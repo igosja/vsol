@@ -1,10 +1,12 @@
 <?php
 
-include(__DIR__ . '/simplehtmldom_1_5/simple_html_dom.php');
+include (__DIR__ . '/include/include.php');
+include(__DIR__ . '/include/simplehtmldom_1_5/simple_html_dom.php');
+
 
 if (isset($_POST['html'])) {
-    $html = $_POST['html'];
-    $html = str_get_html($html);
+    $html = new simple_html_dom();
+    $html->load($_POST['html']);
     $innertext = $html->innertext;
     $innertext = explode('var arr_mainlinks=', $innertext);
     $teamlinks = $innertext[1];
@@ -96,82 +98,7 @@ if (isset($_POST['html'])) {
         }
     }
 }
-?>
-<html>
-<head>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/css/starter-template.css">
-    <script src="/js/bootstrap.min.js"></script>
-</head>
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button
-                    type="button"
-                    class="navbar-toggle collapsed"
-                    data-toggle="collapse"
-                    data-target="#navbar"
-                    aria-expanded="false"
-                    aria-controls="navbar"
-            >
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">ВСОЛ</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/real_team.php">Реальные команды</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<div class="container">
-    <div class="starter-template">
-        <h1>Реальные команды</h1>
-        <div class="row">
-            <div class="col-lg-12">
-                <?php if (isset($playerTmArray) && isset($playerArray)) { ?>
-                    <table class="table table-bordered table-hover table-responsive">
-                        <tr>
-                            <th colspan="5">Добавить игроков</th>
-                        </tr>
-                        <?php foreach ($playerTmArray as $item) { ?>
-                            <tr>
-                                <td><?= $item['name']; ?></td>
-                                <td><?= $item['link']; ?></td>
-                                <td><?= $item['country']; ?></td>
-                                <td><?= $item['position']; ?></td>
-                                <td><?= $item['lineup']; ?></td>
-                            </tr>
-                        <?php } ?>
-                    </table>
-                    <table class="table table-bordered table-hover table-responsive">
-                        <tr>
-                            <th colspan="4">Удалить игроков</th>
-                        </tr>
-                        <?php foreach ($playerArray as $item) { ?>
-                            <tr>
-                                <td><?= $item['name']; ?></td>
-                                <td><?= $item['link']; ?></td>
-                                <td><?= $item['country']; ?></td>
-                                <td><?= $item['lineup']; ?></td>
-                            </tr>
-                        <?php } ?>
-                    </table>
-                <?php } else { ?>
-                    <form method="post">
-                        <textarea name="html" class="form-control" rows="10"></textarea>
-                        <input class="btn btn-default" type="submit" value="Сверить данные"/>
-                    </form>
-                <?php } ?>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
-</html>
+
+
+
+include(__DIR__ . '/view/layout.php');
