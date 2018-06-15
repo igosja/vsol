@@ -55,9 +55,6 @@ if (isset($_POST['game'])) {
         $eventArray[] = $event;
     }
     print '<pre>';
-    print_r($eventArray);
-    exit;
-    print '<pre>';
     print_r($home);
     print '<pre>';
     print_r($guest);
@@ -72,25 +69,42 @@ if (isset($_POST['game'])) {
     print '<pre>';
     print_r($visitor);
     print '<pre>';
-    print_r();
+    print_r($positionHome);
     print '<pre>';
-    print_r();
+    print_r($positionGuest);
     print '<pre>';
-    print_r();
+    print_r($tacticHome);
     print '<pre>';
-    print_r();
+    print_r($tacticGuest);
     print '<pre>';
-    print_r();
+    print_r($moodHome);
     print '<pre>';
-    print_r();
+    print_r($moodGuest);
     print '<pre>';
-    print_r();
-    print '<pre>';
-    print_r();
-    print '<pre>';
-    print_r();
+    print_r($eventArray);
     exit;
 }
+
+$text = [
+    'visitor' => [
+        'sun' => [
+            '{visitor} зрителей на Progress загорают под ярким солнцем.',
+        ],
+        'good' => [
+            '{visitor} зрителей собралось на {stadium}, где установилась хорошая для футбола погода.',
+            'Прекрасная для футбола погода на Barons Arena, где собралось 54661 зрителей.',
+        ],
+        'cold' => [
+            'В этот холодный и пасмурный день {visitor} зрителей собралось на Progress.',
+        ],
+        'rain' => [
+            '{visitor} зрителей пришло на {stadium} несмотря на сильный ливень.',
+            'Целый день идет дождь, но {visitor} преданных болельщиков пришло на {stadium}.',
+            '933 зрителей собралось на одесса стадиум, несмотря на угрожающие тучи на горизонте.',
+            '324 зрителей собралось на Arsenal Vyshgorod Arena под идущим весь день дождем.',
+        ],
+    ],
+];
 
 
 include(__DIR__ . '/view/layout.php');
