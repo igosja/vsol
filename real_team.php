@@ -40,10 +40,12 @@ if (isset($_POST['html'])) {
         $link = str_replace('"', '', $player[7]);
         $link = str_replace('en//', 'en/z/', $link);
         $link = str_replace('http://', 'https://', $link);
+        $id = explode('/', $link);
         if ($link) {
             $playerArray[] = array(
                 'name' => str_replace('"', '', $player[8]),
                 'link' => $link,
+                'id' => end($id),
                 'country' => $player[4],
                 'lineup' => $player[9],
                 'p_gk' => $player[10],
@@ -53,7 +55,6 @@ if (isset($_POST['html'])) {
             );
         }
     }
-
 
     $playerTmArray = array();
 
@@ -81,6 +82,7 @@ if (isset($_POST['html'])) {
                 $playerTmArray[] = array(
                     'name' => $aPlayer->innertext,
                     'link' => 'http://www.transfermarkt.co.uk/en//profil/spieler/' . $link,
+                    'id' => $link,
                     'country' => $imgCountry->title,
                     'lineup' => $lineup + 1,
                     'position' => $tdPosition->title,
@@ -89,9 +91,14 @@ if (isset($_POST['html'])) {
         }
     }
 
+    $playerUpdateArray = array();
     foreach ($playerTmArray as $keyTm => $playerTm) {
         foreach ($playerArray as $key => $player) {
             if ($playerTm['name'] == $player['name']) {
+                unset($playerTmArray[$keyTm]);
+                unset($playerArray[$key]);
+            } elseif ($playerTm['id'] == $player['id']) {
+                $playerUpdateArray[] = $playerTmArray[$keyTm];
                 unset($playerTmArray[$keyTm]);
                 unset($playerArray[$key]);
             }
