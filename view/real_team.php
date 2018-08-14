@@ -28,6 +28,7 @@
                             <td><?= $item['name']; ?></td>
                             <td><?= $item['link']; ?></td>
                             <td><?= $item['country']; ?></td>
+                            <td><?= $item['position']; ?></td>
                             <td><?= $item['lineup']; ?></td>
                         </tr>
                     <?php } ?>

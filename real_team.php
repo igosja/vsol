@@ -94,7 +94,7 @@ if (isset($_POST['html'])) {
     $playerUpdateArray = array();
     foreach ($playerTmArray as $keyTm => $playerTm) {
         foreach ($playerArray as $key => $player) {
-            if ($playerTm['name'] == $player['name']) {
+            if ($playerTm['name'] == $player['name'] && checkPosition($playerTm, $player)) {
                 unset($playerTmArray[$keyTm]);
                 unset($playerArray[$key]);
             } elseif ($playerTm['id'] == $player['id']) {
@@ -106,6 +106,19 @@ if (isset($_POST['html'])) {
     }
 }
 
-
+function checkPosition($playerTm, $playerVsol) {
+    if ('Goalkeeper' == $playerTm['position'] && $playerVsol['p_gk']) {
+        return true;
+    }
+    if ('Defender' == $playerTm['position'] && $playerVsol['p_def']) {
+        return true;
+    }
+    if ('Midfielder' == $playerTm['position'] && $playerVsol['p_mid']) {
+        return true;
+    }
+    if ('Forward' == $playerTm['position'] && $playerVsol['p_for']) {
+        return true;
+    }
+}
 
 include(__DIR__ . '/view/layout.php');
