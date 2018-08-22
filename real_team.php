@@ -79,7 +79,7 @@ if (isset($_POST['html'])) {
                 $link = explode('/', $link);
                 $link = end($link);
                 $imgCountry = $tr->find('td', 6)->find('img', 0);
-                $playerTmArray[] = array(
+                $playerTmArray[$link] = array(
                     'name' => $aPlayer->innertext,
                     'link' => 'http://www.transfermarkt.co.uk/en//profil/spieler/' . $link,
                     'id' => $link,
