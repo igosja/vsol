@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-lg-12">
         <?php if (isset($playerTmArray) || isset($playerArray) || isset($playerUpdateArray)) { ?>
-            <?php if (isset($playerTmArray)) { ?>
+            <?php if ($playerTmArray) { ?>
                 <table class="table table-bordered table-hover table-responsive">
                     <tr>
                         <th colspan="5">Добавить игроков</th>
@@ -18,7 +18,7 @@
                     <?php } ?>
                 </table>
             <?php } ?>
-            <?php if (isset($playerUpdateArray)) { ?>
+            <?php if ($playerUpdateArray) { ?>
                 <table class="table table-bordered table-hover table-responsive">
                     <tr>
                         <th colspan="4">Обновить игроков</th>
@@ -34,7 +34,7 @@
                     <?php } ?>
                 </table>
             <?php } ?>
-            <?php if (isset($playerArray)) { ?>
+            <?php if ($playerArray) { ?>
                 <table class="table table-bordered table-hover table-responsive">
                     <tr>
                         <th colspan="4">Удалить игроков</th>

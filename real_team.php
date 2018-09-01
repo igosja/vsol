@@ -119,6 +119,17 @@ function checkPosition($playerTm, $playerVsol) {
     if ('Forward' == $playerTm['position'] && $playerVsol['p_for']) {
         return true;
     }
+    return false;
+}
+
+function checkNational($playerTm, $playerVsol) {
+    if ('Marocco' == $playerTm['country'] && 100 != $playerVsol['country']) {
+        return false;
+    }
+    if ('Marocco' != $playerTm['country'] && 100 == $playerVsol['country']) {
+        return false;
+    }
+    return true;
 }
 
 include(__DIR__ . '/view/layout.php');
