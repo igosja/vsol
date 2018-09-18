@@ -49,6 +49,9 @@
                     <?php } ?>
                 </table>
             <?php } ?>
+            <?php if (!$playerArray && !$playerUpdateArray && !$playerTmArray) { ?>
+                <p class="text-center">Всё ОК</p>
+            <?php } ?>
         <?php } else { ?>
             <form method="post">
                 <textarea name="html" class="form-control" rows="10"></textarea>
