@@ -31,8 +31,8 @@ try {
             $teamUrl[] = $teamlink;
         }
 
-        $players = $innertext[1];
-        $players = explode('var plrdata=', $players);
+        $innertext = $html->innertext;
+        $players = explode('var plrdata=', $innertext);
         $players = $players[1];
         $players = explode('/* ]]> */', $players);
         $players = $players[0];
